@@ -1,0 +1,6 @@
+venv
+*.pyc
+__pycache__/
+db.sqilte3
+local_settings.py
+media
