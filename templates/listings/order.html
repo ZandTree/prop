@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+<h1>Lets check the default</h1>
+<div class="container">
+    <form class="" action="." method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="" value="Save">
+    </form>
+
+</div>
+
+
+{% endblock %}

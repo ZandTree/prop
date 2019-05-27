@@ -25,7 +25,7 @@ SECRET_KEY = '8@)f9@#$5lwuoj+it#799q5&utd82o0-t*r_%sa+7)f=5uhw10'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.humanize',
+    'bootstrap4',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #custom
+    'pages',
+    'listings',
+    'realtors',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +64,7 @@ ROOT_URLCONF = 'makelaar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +78,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'makelaar.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
 
 
 # Database
@@ -113,8 +131,38 @@ USE_L10N = True
 
 USE_TZ = True
 
+# module allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional" # 'mandatory','none'
+ACCOUNT_USERNAME_BLACKLIST = ["admin", "administrator", "moderator"]
+ACCOUNT_LOGOUT_REDIRECT_URL ="/"
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("MY_EMAIL")
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+STATIC_ROOT =os.path.join(BASE_DIR,'assets')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'bt/static')
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR:'danger'
+}
+print('settings calling ....',MESSAGE_TAGS,'msg tags')

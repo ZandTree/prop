@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Showcase -->
+<section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <div class="overlay p-5">
+        <h1 class="display-4 mb-4">
+          Property Searching Just Got So Easy
+        </h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
+          voluptatum tempore! Consectetur, id commodi!</p>
+        <div class="search">
+          <form action="{% url 'listings:test-search' %}" method="POST">
+              {% csrf_token %}
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="keywords" class="form-control" placeholder="Keywords (Pool, Garage, etc)">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">City</label>
+                <input type="text" name="city" class="form-control" placeholder="City">
+              </div>
+            <!-- start dump -->
+            <div class="col-md-4 mb-3">
+              <label class="sr-only">State</label>
+              <select name="state" class="form-control">
+                <!-- <option selected="true" disabled="disabled">State (All)</option> -->
+                {% for state_item in form.state %}
+                    <option value="{{state_item.value}}">{{state_item}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            </div>
+            <!-- Form Row 2 -->
+            <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label class="sr-only">Bedrooms</label>
+              <select name="bedrooms" class="form-control">
+                <!-- <option selected="true" disabled="disabled">Bedrooms (All)</option> -->
+                {% for bed_item in form.bedrooms %}
+                    <option value="{{bed_item.value}}">{{bed_item}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <select name="price" class="form-control" id="type">
+                <!-- <option selected="true" disabled="disabled">Max Price (Any)</option> -->
+                {% for price_item in form.price %}
+                    <option value="{{price_item.value}}">{{price_item}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            </div>
+
+            <!-- end dump -->
+            value={{request.GET.post}}>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <div class="overlay p-5">
+        <h1 class="display-4 mb-4">
+          Property Searching Just Got So Easy
+        </h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
+          voluptatum tempore! Consectetur, id commodi!</p>
+        <div class="search">
+          <form action=" url 'listings:test-search' %}">
+               csrf_token %}
+              form.as_p}}
+              <input type="submit" name="" value="">
+            <!-- Form Row 1 -->
+
+    </div>
+  </div>
+</section> -->
+
+
+{% endblock %}
