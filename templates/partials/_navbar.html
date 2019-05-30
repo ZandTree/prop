@@ -50,16 +50,59 @@
           </li>
           {% else %}
             <li class="nav-item mr-3">
-              <a class="nav-link" href="{% url 'account_signup' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
+              <a class="nav-link" id="reg"
+                  href="{% url 'account_signup' %}">
+
+                <i class="fas fa-user-plus"></i> Register\Login</a>
             </li>
             <li class="nav-item mr-3">
-              <a class="nav-link" href="{% url 'account_login' %}">
+              <a class="nav-link"
+                  href="{% url 'account_login' %}">
                 <i class="fas fa-sign-in-alt"></i>
                 Login</a>
             </li>
+            <li class="nav-item mr-3">
+              <a class="nav-link need_auth"
+                  href="{% url 'account_login' %}"
+                  data-toggle="modal"
+                  data-target="#loginModal">
+                <i class="fas fa-sign-in-alt"></i>
+                Login\SignUp</a>
+            </li>
             {% endif %}
-      </ul>
+          </ul>
+      </div>
+    </div> <!--container-->
+ </nav>
+{# login modal#}
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog modal-dialog-centered auth-modal">
+        <div class="modal-content">
+            <!-- modal header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- model body -->
+            <div class="modal-body">
+                {% include 'account/ajax_login.html'%}
+            </div>
+        </div>
     </div>
-  </div>
-</nav>
+</div>
+{# signup modal #}
+<div class="modal fade" id="signupModal">
+    <div class="modal-dialog modal-dialog-centered auth-modal">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Sign Up</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- modal body -->
+            <div class="modal-body">
+                {% include 'account/ajax_signup.html'%}
+            </div>
+        </div>
+    </div>
+</div>

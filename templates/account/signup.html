@@ -7,8 +7,6 @@
 {% block content %}
   <section id="register" class="bg-light py-5">
     <div class="container
-
-
       <div class="row">
         <div class="col-md-6 mx-auto">
           <div class="card">
@@ -26,10 +24,8 @@
                          {{form.username.errors }}
                      </div>
                      {% endif %}
-
                    <label for="username">Username</label>
                    <input type="text" name="username" class="form-control" required>
-
                  </div>
                  <div class="form-group">
                      {% if form.email.errors %}
@@ -69,7 +65,5 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
-
 {% endblock %}
